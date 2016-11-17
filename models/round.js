@@ -9,7 +9,7 @@ var Game = gameModel.game;
 var Card = cardModel.card;
 var Player = playerModel.player;
 
-//StateMachine maquina de estadoss
+//StateMachine maquina de estadosss
 var StateMachine = require("../node_modules/javascript-state-machine/state-machine.js");
 
 
