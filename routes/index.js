@@ -59,7 +59,7 @@ router.get('/host',function(req,res){
 });
 
 
-/* POST host page. */
+/* POST host pagereq.session.passport.user  este comando trae el usuaro desde el servidor y luego se comvierte en el juador numero dos del juego*/
 router.post('/host', function(req,res){    
   var p1 = new Player (req.session.passport.user);
   var g = new Game ({name : req.body.GameName, player1 : p1});
