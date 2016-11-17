@@ -190,6 +190,7 @@ router.get('/play',function(req,res){
     console.log('Este es el jugador 1: '+ game.player1.name);
     console.log('Este es el jugador 2: '+ game.player2.name);
     console.log('--------------');
+    //Agrego usuario para implementar las vistas por sesiones
     res.render('play', {g : game, usuario : req.session.passport.user});	        
     ////console.log(util.inspect(game, {showHidden: false, depth: 12}));
 	
