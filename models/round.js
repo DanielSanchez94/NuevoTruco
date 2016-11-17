@@ -116,12 +116,6 @@ Round.prototype.guardarCarta = function (player, card){
 //Toma un jugador y la carta, devuelve el arreglo de las cartas del jugador sin la carta que jugó
 Round.prototype.tirarCarta = function (player,card){	
 	if (this.player1.name == player.name){	
-		console.log('------------------------'); 		
-		console.log(this.player1.cards[0]);
-		console.log(card);
-		console.log(this.player1.cards[0] === card);
-		console.log(this.player1.cards[0] == card);
-		console.log('------------------------');
 		if (this.player1.cards[0] != null){				
 			if ((this.player1.cards[0].number == card.number) && (this.player1.cards[0].suit == card.suit)){
 				this.player1.cards[0] = undefined;
@@ -225,13 +219,11 @@ Round.prototype.played = function (action, card){
 			* tira card de las cartas del jugador corriente
 			*/
 			if (this.currentTurn.name == this.player1.name){
-				//console.log('REALIZANDO CAMBIOS PARA EL JUGADOR 1!!!!');
 				this.guardarCarta(this.player1, card); 
 				this.tirarCarta(this.player1, card); 
 				return this.player1;
 			//Si el jugador corriente es el jugador 2, realiza el mismo tratamiento
 			}else{
-				//console.log('REALIZANDO CAMBIOS PARA EL JUGADOR 2!!!!');
 				this.guardarCarta(this.player2, card);
 				this.tirarCarta(this.player2, card);				
 				return this.player2;
@@ -268,7 +260,6 @@ function compAr(arreglo, arreglo0){
 	var aux = false;
 	if ((arreglo.length == 2) && (arreglo0.length == 2)){
 		if ((arreglo[0] == arreglo0[0]) && (arreglo[1] == arreglo0[1])){
-		//	//console.log("estoy dentro del compAr " + arreglo + " " + arreglo0 + " " + arreglo.length);
 			aux = true;
 		}	
 	}
@@ -283,8 +274,6 @@ function compAr(arreglo, arreglo0){
 //Devuelve un valor booleano: True=Hay ganador, False=No hay ganador
 Round.prototype.hayGanador = function (action,game){
 	var aux = false;
-	//console.log(action);
-	//console.log(this.prevstate);
 	if ((action == 'no-quiero') && ((this.prevstate == 'truco') || (this.prevstate == 'retruco') || (this.prevstate == 'vale4'))){
 	 	aux = true;
 		if (this.currentTurn.name == this.player1.name)
@@ -337,13 +326,11 @@ Round.prototype.hayGanador = function (action,game){
 
 	}
 	console.log(aux);
-	////console.log("aca esta el aux" + " " +aux);
 	return aux;
 }
 
 Round.prototype.calculateEnvido = function(action){
 	if ((this.checkPrevStates('envido')) || (this.checkPrevStates('envido-envido')) || (this.checkPrevStates('realenvido')) || (this.checkPrevStates('faltaenvido'))){
-		//console.log("entorooentroentrooo");
 		if (this.prevstate == 'envido'){
 			//Si el estado actual 'quiero'
 			if (action == 'quiero')
@@ -463,7 +450,6 @@ Round.prototype.checkPrevStates = function(action){
 			aux=true;
 		i++;
 	}
-    //console.log(aux);
 	return aux;
 	//preguntar que pasa si no le pongo var
 	/*estados=[];
@@ -507,12 +493,10 @@ Round.prototype.play = function(player, action, value) {
 
 	
 	this.prevstate=this.fsm.current;
-	//console.log(this.prevstate,"aa");
 	// move to the next state
 	this.fsm[action](player, value);
 
 	this.estadosPrevios.push(action);
-	//console.log(this.estadosPrevios);
 	//check if is needed play a card
 	this.played(action,value);
 	//this.played(action,value);
@@ -526,7 +510,6 @@ Round.prototype.play = function(player, action, value) {
 
 	//check the confrontations
 	this.confrontaciones();	
-	//console.log(this.arregloManos);
 	//check the status of hands
 	/*if (this.hayGanador() == 1)
 		return(this.player1);	
